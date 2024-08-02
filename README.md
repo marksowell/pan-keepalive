@@ -16,7 +16,7 @@ This script uses the `PanGPA.exe` command to reconnect the VPN at regular interv
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/pan-keepalive.git
+    git clone https://github.com/marksowell/pan-keepalive.git
     cd pan-keepalive
     ```
 
@@ -29,7 +29,8 @@ This script uses the `PanGPA.exe` command to reconnect the VPN at regular interv
     globalprotect_cli = r"C:\Program Files\Palo Alto Networks\GlobalProtect\PanGPA.exe"
     ```
 
-2. Run the script:
+2. Connect to your VPN using the Palo Alto Networks GlobalProtect client.  
+3. Run the script:
     ```bash
     python pan_keepalive.py
     ```
@@ -38,18 +39,21 @@ The script will run indefinitely, reconnecting the VPN every 30 minutes.
 
 ## Running the Script Automatically
 
-To run the script automatically in the background, you can use Windows Task Scheduler:
+You can configure the script to start automatically when your system boots. Here’s how to do it using a startup shortcut:
 
-1. Open Task Scheduler (press `Win + R`, type `taskschd.msc`, and press Enter).
+1. Create a Shortcut:
+    - Right-click on your desktop or in a folder and select `New > Shortcut`.
+    - In the location field, enter the path to your Python executable followed by the path to your script, e.g.:
+      
+      ```bash
+      "C:\Path\To\Python\python.exe" "C:\Path\To\pan-keepalive\pan_keepalive.py"
+      ```
+      
+    - Click `Next` and give your shortcut a name (e.g., `PAN Keepalive`).
 
-2. Create a new basic task:
-    - Name: Keep VPN Alive
-    - Trigger: Daily (set the start time and frequency as needed)
-    - Action: Start a program
-    - Program/script: Path to your Python executable, e.g., `C:\Path\To\Python\python.exe`
-    - Add arguments: Path to your script file, e.g., `C:\Path\To\pan-keepalive\pan_keepalive.py`
-
-3. Finish and save the task.
+2. Move the Shortcut to the Startup Folder:
+    - Press `Win + R`, type `shell:startup`, and press Enter.
+    - Move the shortcut you created into the Startup folder.
 
 ## License
 
